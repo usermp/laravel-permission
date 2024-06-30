@@ -22,6 +22,9 @@ class LaravelPermissionServiceProvider extends ServiceProvider
                     __DIR__ . '/database/migrations/create_permissions_tables.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_permissions_tables.php'),
                 ], 'migrations');
             }
+            $this->commands([
+               \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
+            ]);
         }
     }
 }
