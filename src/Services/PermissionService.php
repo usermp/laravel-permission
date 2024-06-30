@@ -15,6 +15,7 @@ class PermissionService
     {
         if (!$resource) {
             Role::create(['name' => $entity]);
+            return;
         }
 
         foreach ($this->crudOperations as $operation) {
