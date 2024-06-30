@@ -5,41 +5,56 @@ namespace Usermp\LaravelPermission\Services;
 use Usermp\LaravelPermission\Models\Role;
 use Usermp\LaravelPermission\Models\Permission;
 use Usermp\LaravelPermission\Models\ExtendedUser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PermissionService
 {
-    public function createCrudRoles($entity)
-    {
-        $crudOperations = ['index', 'show', 'store', 'update', 'destroy'];
+    private array $crudOperations = ['index', 'show', 'store', 'update', 'destroy'];
 
-        foreach ($crudOperations as $operation) {
+    public function createCrudRoles(string $entity, bool $resource = true): void
+    {
+        if (!$resource) {
+            Role::create(['name' => $entity]);
+        }
+
+        foreach ($this->crudOperations as $operation) {
             Role::create(['name' => "{$entity}.{$operation}"]);
         }
     }
 
-    public function assignRoleToUser(ExtendedUser $user, $roleName)
+    public function assignRoleToUser(ExtendedUser $user, string $roleName): void
     {
-        $role = Role::where('name', $roleName)->firstOrFail();
+        $role = $this->getRoleByName($roleName);
         $user->roles()->attach($role);
     }
 
-    public function removeRoleFromUser(ExtendedUser $user, $roleName)
+    public function removeRoleFromUser(ExtendedUser $user, string $roleName): void
     {
-        $role = Role::where('name', $roleName)->firstOrFail();
+        $role = $this->getRoleByName($roleName);
         $user->roles()->detach($role);
     }
 
-    public function assignPermissionToRole($roleName, $permissionName)
+    public function assignPermissionToRole(string $roleName, string $permissionName): void
     {
-        $role = Role::where('name', $roleName)->firstOrFail();
-        $permission = Permission::where('name', $permissionName)->firstOrFail();
+        $role = $this->getRoleByName($roleName);
+        $permission = $this->getPermissionByName($permissionName);
         $role->permissions()->attach($permission);
     }
 
-    public function removePermissionFromRole($roleName, $permissionName)
+    public function removePermissionFromRole(string $roleName, string $permissionName): void
     {
-        $role = Role::where('name', $roleName)->firstOrFail();
-        $permission = Permission::where('name', $permissionName)->firstOrFail();
+        $role = $this->getRoleByName($roleName);
+        $permission = $this->getPermissionByName($permissionName);
         $role->permissions()->detach($permission);
+    }
+
+    private function getRoleByName(string $roleName): Role
+    {
+        return Role::where('name', $roleName)->firstOrFail();
+    }
+
+    private function getPermissionByName(string $permissionName): Permission
+    {
+        return Permission::where('name', $permissionName)->firstOrFail();
     }
 }
