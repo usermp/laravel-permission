@@ -1,0 +1,20 @@
+{
+    "name": "usermp/laravel-permission",
+    "description": "Laravel Permission Package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Usermp\\LaravelPermission\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mohammad",
+            "email": "usermp76@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^12.0@dev"
+    }
+}
