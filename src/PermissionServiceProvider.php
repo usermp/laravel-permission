@@ -36,6 +36,10 @@ class PermissionServiceProvider extends ServiceProvider
 
         // Register middleware
         $this->registerMiddleware();
+
+        $this->commands([
+            \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
+         ]);
     }
 
     /**

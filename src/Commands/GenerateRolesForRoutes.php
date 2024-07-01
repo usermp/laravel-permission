@@ -26,7 +26,7 @@ class GenerateRolesForRoutes extends Command
         foreach ($routes as $route) {
             $name = $route->getName();
             if ($name) {
-                $this->permissionService->createCrudRoles($name);
+                $this->permissionService->createCrudRoles($name ,true);
                 $this->info("Created role: $name");
             }
         }
