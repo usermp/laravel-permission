@@ -39,7 +39,7 @@ class PermissionServiceProvider extends ServiceProvider
 
         $this->commands([
             \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
-         ]);
+        ]);
     }
 
     /**
