@@ -3,20 +3,28 @@
 namespace Usermp\LaravelPermission\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use \Usermp\LaravelPermission\Models\Permission;
-use App\Models\User;
 
+/**
+ * Class Role
+ *
+ * @package Usermp\LaravelPermission\Models
+ */
 class Role extends Model
 {
-    protected $fillable = ['name'];
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'roles';
 
+    /**
+     * Define the relationship between Role and Permission.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Permission::class, 'permission_role');
     }
 }
