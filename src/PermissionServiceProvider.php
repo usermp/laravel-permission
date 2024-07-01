@@ -9,11 +9,15 @@ use Usermp\LaravelPermission\Middleware\CheckPermission;
  * Class PermissionServiceProvider
  *
  * @package Usermp\LaravelPermission\Providers
+ *
+ * Service provider for managing permissions in a Laravel application.
  */
 class PermissionServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     *
+     * This method is used to bind classes or services into the service container.
      *
      * @return void
      */
@@ -24,6 +28,9 @@ class PermissionServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     *
+     * This method is used to bootstrap any application services, such as
+     * publishing resources, registering middleware, or executing custom commands.
      *
      * @return void
      */
@@ -37,6 +44,7 @@ class PermissionServiceProvider extends ServiceProvider
         // Register middleware
         $this->registerMiddleware();
 
+        // Register artisan commands
         $this->commands([
             \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
         ]);
@@ -44,6 +52,8 @@ class PermissionServiceProvider extends ServiceProvider
 
     /**
      * Register middleware.
+     *
+     * This method is used to register middleware with the application's router.
      *
      * @return void
      */
