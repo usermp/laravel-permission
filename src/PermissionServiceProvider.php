@@ -46,7 +46,9 @@ class PermissionServiceProvider extends ServiceProvider
 
         // Register artisan commands
         $this->commands([
+
             \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
+            
         ]);
     }
 
