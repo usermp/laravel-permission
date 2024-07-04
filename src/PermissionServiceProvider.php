@@ -38,7 +38,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         // Publish migrations
         $this->publishes([
-            __DIR__ . '/../database/migrations/create_permissions_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_permissions_table.php'),
+            __DIR__ . '/../database/stubs/create_permissions_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_permissions_table.php'),
         ], 'migrations');
 
         // Register middleware
@@ -46,10 +46,10 @@ class PermissionServiceProvider extends ServiceProvider
 
         // Register artisan commands
         $this->commands([
-
             \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
-            
         ]);
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
