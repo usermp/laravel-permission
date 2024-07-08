@@ -2,6 +2,7 @@
 
 namespace Usermp\LaravelPermission\Commands;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Usermp\LaravelPermission\Models\Role;
 use Usermp\LaravelPermission\Models\Permission;
