@@ -11,18 +11,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
-        });
-
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
-        });
-
         Schema::create('permission_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('permission_id')->constrained()->onDelete('cascade');
