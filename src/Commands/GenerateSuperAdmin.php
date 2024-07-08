@@ -22,11 +22,15 @@ class GenerateSuperAdmin extends Command
 
     public function handle()
     {
-        $permission = Permission::create(["name" => "Super Admin"]);
+        $permission = Permission::firstOrCreate(['name' => 'Super Admin']);
 
-        foreach(Role::all() as $role)
-        {
-            $role->permissions()->attach($permission->id);
+        foreach (Role::all() as $role) {
+            $role->permissions()->attach($permission->id, [
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
         }
+
+        $this->info('Super Admin permission assigned to all roles successfully.');
     }
 }
