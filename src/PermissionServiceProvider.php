@@ -49,6 +49,8 @@ class PermissionServiceProvider extends ServiceProvider
         // Register artisan commands
         $this->commands([
             \Usermp\LaravelPermission\Commands\GenerateRolesForRoutes::class,
+            \Usermp\LaravelPermission\Commands\GenerateSuperAdmin::class,
+            
         ]);
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');

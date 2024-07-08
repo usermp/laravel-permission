@@ -7,7 +7,7 @@ use Usermp\LaravelPermission\Models\Role;
 use Usermp\LaravelPermission\Models\Permission;
 use Usermp\LaravelPermission\Services\PermissionService;
 
-class GenerateRolesForRoutes extends Command
+class GenerateSuperAdmin extends Command
 {
     protected $signature = 'generate:admin {UserId}';
     protected $description = 'Generate Super admin';
