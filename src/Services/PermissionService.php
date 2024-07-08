@@ -14,13 +14,14 @@ class PermissionService
     public function createCrudRoles(string $entity, bool $resource = false): void
     {
         if ($resource) {
-            Role::create(['name' => $entity]);
+            Role::firstOrCreate(['name' => $entity]);
             return;
         }
 
         foreach ($this->crudOperations as $operation) {
-            Role::create(['name' => "{$entity}.{$operation}"]);
+            Role::firstOrCreate(['name' => "{$entity}.{$operation}"]);
         }
+        return;
     }
 
     public function assignRoleToUser(ExtendedUser $user, string $roleName): void
