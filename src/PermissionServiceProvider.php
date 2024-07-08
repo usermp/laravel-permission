@@ -36,6 +36,8 @@ class PermissionServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // $this->loadRoutesFrom(__DIR__. '/Routes/api.php');
+
         // Publish migrations
         $this->publishes([
             __DIR__ . '/../database/stubs/create_permissions_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_permissions_table.php'),

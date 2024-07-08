@@ -11,9 +11,9 @@ class PermissionService
 {
     private array $crudOperations = ['index', 'show', 'store', 'update', 'destroy'];
 
-    public function createCrudRoles(string $entity, bool $resource = true): void
+    public function createCrudRoles(string $entity, bool $resource = false): void
     {
-        if (!$resource) {
+        if ($resource) {
             Role::create(['name' => $entity]);
             return;
         }
