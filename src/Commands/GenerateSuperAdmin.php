@@ -3,7 +3,7 @@
 namespace Usermp\LaravelPermission\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Route;
+use Usermp\LaravelPermission\Models\Role;
 use Usermp\LaravelPermission\Models\Permission;
 use Usermp\LaravelPermission\Services\PermissionService;
 
@@ -22,15 +22,11 @@ class GenerateRolesForRoutes extends Command
 
     public function handle()
     {
-        // $permission   = Permission::create(["name" => "Super Admin"]);
-        // $routes       = Route::getRoutes();
+        $permission = Permission::create(["name" => "Super Admin"]);
 
-        // foreach ($routes as $route) {
-        //     $name = $route->getName();
-        //     if ($name) {
-        //         $this->permissionService->createCrudRoles($name ,true);
-        //         $this->info("Created role: $name");
-        //     }
-        // }
+        foreach(Role::all() as $role)
+        {
+            $role->permissions()->attach($permission->id);
+        }
     }
 }
