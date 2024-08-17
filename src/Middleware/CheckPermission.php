@@ -23,7 +23,7 @@ class CheckPermission
     public function handle($request, Closure $next)
     {
         // Get the authenticated user
-        $user = ExtendedUser::find(1);
+        $user = ExtendedUser::find(Auth::id());
 
         // Get the current route name
         $routeName = $request->route()->getName();
