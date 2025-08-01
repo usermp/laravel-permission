@@ -3,7 +3,7 @@
 namespace Usermp\LaravelPermission\Controllers;
 
 use Illuminate\Http\Request;
-use Usermp\LaravelGenerator\Services\Crud;
+use Usermp\LaravelPermission\Services\Crud;
 use App\Models\Permission;
 use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
