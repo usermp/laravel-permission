@@ -7,7 +7,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Usermp\LaravelFilter\Traits\Filterable;
 /**
  * Class Permission
  *
@@ -15,7 +14,7 @@ use Usermp\LaravelFilter\Traits\Filterable;
  */
 class Permission extends Model
 {
-    use HasFactory, Notifiable, SoftDeletes, Filterable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
